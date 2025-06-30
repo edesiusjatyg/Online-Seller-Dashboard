@@ -11,7 +11,7 @@ package project;
 public class MainGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form askjdf
+     * Creates new form
      */
     public MainGUI() {
         initComponents();
