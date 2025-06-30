@@ -15,6 +15,7 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -28,8 +29,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnProduk = new javax.swing.JButton();
+        btnOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,12 +39,27 @@ public class MainGUI extends javax.swing.JFrame {
 
         btnLogout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Lihat Produk");
+        btnProduk.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnProduk.setText("Lihat Produk");
+        btnProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdukActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("Lihat Order");
+        btnOrder.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOrder.setText("Lihat Order");
+        btnOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,9 +73,9 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(65, 65, 65))
             .addGroup(layout.createSequentialGroup()
                 .addGap(193, 193, 193)
-                .addComponent(jButton1)
+                .addComponent(btnProduk)
                 .addGap(193, 193, 193)
-                .addComponent(jButton2)
+                .addComponent(btnOrder)
                 .addContainerGap(206, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -71,13 +87,30 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(btnLogout))
                 .addGap(103, 103, 103)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnProduk)
+                    .addComponent(btnOrder))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        new LoginScreen().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdukActionPerformed
+        viewProduct p = new viewProduct();
+        p.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProdukActionPerformed
+
+    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
+        viewOrders o = new viewOrders();
+        o.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,8 +150,8 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnOrder;
+    private javax.swing.JButton btnProduk;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

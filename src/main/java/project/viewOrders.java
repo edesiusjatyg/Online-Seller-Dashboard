@@ -7,6 +7,7 @@ public class viewOrders extends javax.swing.JFrame {
 private DefaultTableModel tableModel;
     public viewOrders() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -19,6 +20,7 @@ private DefaultTableModel tableModel;
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +61,13 @@ private DefaultTableModel tableModel;
         ));
         jScrollPane1.setViewportView(tblOrders);
 
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,7 +84,9 @@ private DefaultTableModel tableModel;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEdit)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete))
+                        .addComponent(btnDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack))
                     .addComponent(jScrollPane1))
                 .addGap(58, 58, 58))
         );
@@ -96,7 +107,8 @@ private DefaultTableModel tableModel;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
-                    .addComponent(btnEdit))
+                    .addComponent(btnEdit)
+                    .addComponent(btnBack))
                 .addGap(25, 25, 25))
         );
 
@@ -113,7 +125,7 @@ private DefaultTableModel tableModel;
        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {                                        
         int selectRow = tblOrders.getSelectedRow();
         if(selectRow >= 0){
             String nameProduct;
@@ -126,15 +138,27 @@ private DefaultTableModel tableModel;
         }
     }                                
     
-    public static void main(String args[]) {//GEN-LAST:event_btnEditActionPerformed
+    
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        new MainGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+    
+    
+    
+    
+    
+    public static void main(String args[]) {                                       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-           new viewOrders().setVisible(true);
-            }
-        });
+            public void run() {
+            new viewOrders().setVisible(true);
+                }
+            });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnSearch;
