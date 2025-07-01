@@ -1,13 +1,18 @@
 package project;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static project.Connector.getConnection;
 
 public class viewOrders extends javax.swing.JFrame {
 private DefaultTableModel tableModel;
     public viewOrders() {
         initComponents();
         setLocationRelativeTo(null);
+        refreshTable();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -21,6 +26,7 @@ private DefaultTableModel tableModel;
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +74,8 @@ private DefaultTableModel tableModel;
             }
         });
 
+        jButton1.setText("Add");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,6 +93,8 @@ private DefaultTableModel tableModel;
                         .addComponent(btnEdit)
                         .addGap(18, 18, 18)
                         .addComponent(btnDelete)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBack))
                     .addComponent(jScrollPane1))
@@ -108,7 +118,8 @@ private DefaultTableModel tableModel;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
                     .addComponent(btnEdit)
-                    .addComponent(btnBack))
+                    .addComponent(btnBack)
+                    .addComponent(jButton1))
                 .addGap(25, 25, 25))
         );
 
@@ -136,7 +147,28 @@ private DefaultTableModel tableModel;
         }else{
          JOptionPane.showMessageDialog(this,"Select the product to edit!");
         }
-    }                                
+    }
+    
+    public void refreshTable(){
+        DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+        model.setRowCount(0);
+        try (Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select * from Orders")) {
+            while(rs.next()){
+                Object[] row = {
+                    rs.getString(1),
+                    rs.getString(4),
+                    rs.getString(3)
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     
     
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -162,6 +194,7 @@ private DefaultTableModel tableModel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblOrders;
